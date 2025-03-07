@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Color Palette */
+        :root {
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f0f0f0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        h2 {
+            color: var(--dark-blue);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--white);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: rgba(13, 71, 161, 0.1);
+        }
+
+        /* Container */
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: var(--white);
+        }
+
+        /* Button */
+        .btn-dashboard {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-dashboard:hover {
+            background-color: #073b8e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'doctor_dashboard' %}" class="btn btn-dashboard mb-3">Return to Dashboard</a>
+        <h2>Patient Management</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Medical History - Diagnosis</th>
+                    <th>Medications</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                {% for appointment in appointments %}
+                    {% for medical_history in medical_historys %}
+
+                        <tr>
+                            <td>{{ patient.username }}</td>
+                            <td>{{ patient.contact_number }}</td>
+                            <td>{{ patient.email }}</td>
+                            <td>{{ appointment.address }}</td>
+                            <td>{{ medical_history.diagnosis }}</td>
+                            <td>{{ medical_history.medications }}</td>
+                            <td><a href=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg></a></td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

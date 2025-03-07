@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment for Appointment</title>
+</head>
+<body>
+    <h2>Pay for Your Appointment</h2>
+    <p>Amount: ${{ billing.amount }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Pay Now</button>
+    </form>
+</body>
+</html>

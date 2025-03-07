@@ -1,0 +1,12 @@
+{% extends 'patient/base.html' %}
+{% block content %}
+<h2>Your Appointments</h2>
+<ul>
+    {% for appointment in appointments %}
+        <li>{{ appointment.date }} - {{ appointment.doctor }}: {{ appointment.reason }}</li>
+    {% empty %}
+        <p>No appointments found.</p>
+    {% endfor %}
+</ul>
+<li class="nav-item"><a class="nav-link" href="{% url 'MedicalHistoryCreate' %}">Medical History</a></li>
+{% endblock %}

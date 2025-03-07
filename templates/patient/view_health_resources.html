@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            color: #1E3A8A;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #1E3A8A;
+        }
+        .card {
+            border: 1px solid #1E3A8A;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            color: #1E3A8A;
+            font-weight: bold;
+        }
+        .btn-outline-primary {
+            border-color: #1E3A8A;
+            color: #1E3A8A;
+        }
+        .btn-outline-primary:hover {
+            background-color: #1E3A8A;
+            color: white;
+        }
+        .text-muted {
+            font-size: 0.9em;
+        }
+        .no-resources {
+            color: #888;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Health Resources</h2>
+        <div class="d-flex justify-content-between mb-3">
+           <a href="{% url 'index' %}" class="btn btn-primary mb-3">Return to Home</a>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for resource in resources %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ resource.title }}</h5>
+                            <p class="card-text">{{ resource.content|truncatewords:20 }}</p>
+                            {% if resource.link %}
+                                <a href="{{ resource.link }}" target="_blank" class="btn btn-outline-primary">
+                                    Visit Link
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Added on: {{ resource.date_added }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="no-resources">No health resources available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
