@@ -95,7 +95,6 @@
                     <th>Date of Birth</th>
                     <th>Address</th>
                     <th>Appointment Date</th>
-                    <th>Time</th>
                     <th>Status</th>
                     <th>Update Status</th>
                 </tr>
@@ -109,7 +108,6 @@
                     <td>{{ appointment.date_of_birth }}</td>
                     <td>{{ appointment.address }}</td>
                     <td>{{ appointment.date }}</td>
-                    <td>{{ appointment.time }}</td>
                     <td>{{ appointment.status }}</td>
                     <td>
                         <form method="post" action="{% url 'update_appointment_status' appointment.pk %}">
